@@ -86,9 +86,6 @@ def crear_tabla_por_gamma(gamma_nombre, gamma_valor):
 
 def generar_tablas_separadas():
     """Genera una tabla CSV separada para cada gamma"""
-    print("📊 Generando tablas separadas por gamma...")
-    print("="*60)
-    
     archivos_generados = []
     
     for gamma_nombre, gamma_valor in gammas.items():
@@ -101,27 +98,8 @@ def generar_tablas_separadas():
         # Guardar CSV
         df_gamma.to_csv(nombre_archivo, index=False, encoding='utf-8')
         archivos_generados.append(nombre_archivo)
-        
-        print(f"✅ {gamma_nombre} (γ = {gamma_valor})")
-        print(f"   📁 Archivo: {nombre_archivo}")
-        print(f"   📏 Dimensiones: {df_gamma.shape[0]} filas × {df_gamma.shape[1]} columnas")
-        print()
     
     return archivos_generados
-
-def mostrar_vista_previa():
-    """Muestra una vista previa de las tablas generadas"""
-    print("🔍 VISTA PREVIA DE LAS TABLAS:")
-    print("="*60)
-    
-    for gamma_nombre, gamma_valor in gammas.items():
-        print(f"\n📋 TABLA: {gamma_nombre.upper()} (γ = {gamma_valor})")
-        print("-" * 50)
-        
-        df = crear_tabla_por_gamma(gamma_nombre, gamma_valor)
-        print(df.head(3).to_string(index=False))
-        print("...")
-        print()
 
 if __name__ == "__main__":
     archivos = generar_tablas_separadas()
